@@ -4,4 +4,8 @@ script:
 - docker build -t wtanaka/ubuntu-1604-oracle-java-8-zookeeper .
 - docker run wtanaka/ubuntu-1604-oracle-java-8-zookeeper bash -c "which /usr/lib/zookeeper/bin/cli_mt"
 after_success:
-- curl https://registry.hub.docker.com/u/wtanaka/ubuntu-1604-oracle-java-8-zookeeper/trigger/d054346a-cdc3-4ddc-909f-580349b36c3c/
+- >
+  curl -H "Content-Type: application/json"
+  --data '{"source_type": "Branch", "source_name": "master"}'
+  -X POST
+  https://registry.hub.docker.com/u/wtanaka/ubuntu-1604-oracle-java-8-zookeeper/trigger/d054346a-cdc3-4ddc-909f-580349b36c3c/
